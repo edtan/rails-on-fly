@@ -1,6 +1,6 @@
-# fly.toml file generated for rails-on-fly on 2021-05-06T11:43:23-05:00
+# fly.toml file generated for rails-on-fly-edtan on 2021-11-20T16:45:28-05:00
 
-app = "rails-on-fly"
+app = "rails-on-fly-edtan"
 
 kill_signal = "SIGINT"
 kill_timeout = 5
@@ -13,7 +13,6 @@ kill_timeout = 5
 
 [env]
   PORT = "8080"
-  PRIMARY_REGION = "atl"
 
 [experimental]
   auto_rollback = true

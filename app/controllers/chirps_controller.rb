@@ -4,7 +4,7 @@ class ChirpsController < ApplicationController
   end
 
   def create
-    @chirp = Chirp.new(params.require(:chirp).permit(:text).merge({
+    @chirp = Chirp.new(params.require(:chirp).permit(:text, :region).merge({
       author: @author,
     }))
 

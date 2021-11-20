@@ -3,6 +3,7 @@
 <%= form_with scope: :chirp, url: chirps_path, local: true do |form| %>
   <p>
     <%= form.text_area :text, placeholder: "what's happening?", style: "width: 100%" %>
+    <%= form.hidden_field :region, :value => ENV["FLY_REGION"] %>
     <em>Sincerely, <%= @author %></em>
   </p>
  
@@ -13,15 +14,17 @@
 
 
 <% @chirps.each do |chirp| %>
-  <div style="background-color: #80CBC4; padding: 6px;">
-    <p style="font-size: 150%; margin: 0">
-      <%= chirp.text %>
-    </p>
-    <em>
-      Sincerely, <%= chirp.author %>
-    </em>
-    <br />
-    <%= time_ago_in_words(chirp.created_at) %> ago
-  </div>
-  <hr />
+  <% cache chirp do %>
+    <div style="background-color: #80CBC4; padding: 6px;">
+      <p style="font-size: 150%; margin: 0">
+        <%= chirp.text %>
+      </p>
+      <em>
+        Sincerely, <%= chirp.author %> (initial appserver in: <%= chirp.region =%>)
+      </em>
+      <br />
+      <%= time_ago_in_words(chirp.created_at) %> ago
+    </div>
+    <hr />
+  <% end %>
 <% end %>
